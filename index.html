@@ -1,45 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>hang man</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style.css">
+    <title> Hockey Hangman by sal montecalvo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <div class="container">
+        <h1>Hockey Hangman</h1>
 
-    <main class="container text-center ">
-        <div id="selection">
-            <h3>skill selection</h3>
-
-
-
-
+        <div id="difficultySelection" class="box">
+            <h2>Select Difficulty</h2>
+            <button class="btn easy" onclick="startGame('easy')">Easy</button>
+            <button class="btn medium" onclick="startGame('medium')">Medium</button>
+            <button class="btn hard" onclick="startGame('hard')">Hard</button>
         </div>
 
+        <div id="gameArea" class="box">
+            <h2 id="wordDisplay">_ _ _ _ _</h2>
+            <p>Guess a letter / try to find the word </p>
+            <input type="text" id="letterInput" maxlength="1">
+            <button class="btn guess-btn" onclick="guessLetter()">Guess</button>
+            <p class="wrong-letters">Wrong guesses: <span id="wrongLetters"></span></p>
+            <p id="message"></p>
+            <button class="btn restart" onclick="resetGame()">Restart</button>
+        </div>
+    </div>
 
-
-
-
-    </main>
-    <footer>
-        <!-- place footer here -->
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

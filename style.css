@@ -1,0 +1,116 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: linear-gradient(to right, #141e30, #243b55);
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Center Container */
+.container {
+    width: 90%;
+    max-width: 600px;
+}
+
+/* Title */
+h1 {
+    font-size: 2.5rem;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+/* Box Styling */
+.box {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.easy {
+    background-color: #263a30;
+    color: black;
+}
+
+.medium {
+    background-color: #b9970fcb;
+    color: black;
+}
+
+.hard {
+    background-color: #4b0d0dbd;
+    color: white;
+}
+
+.guess-btn {
+    background-color: #4f85c0;
+    color: white;
+}
+
+.restart {
+    background-color: #a30909;
+    color: white;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+/* Game Area */
+#wordDisplay {
+    font-size: 2rem;
+    letter-spacing: 5px;
+}
+
+#letterInput {
+    padding: 8px;
+    font-size: 1rem;
+    text-align: center;
+    width: 50px;
+    margin: 10px;
+    border: 2px solid #ffffff;
+    background: transparent;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+/* Wrong Letters */
+.wrong-letters {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+#message {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
