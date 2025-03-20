@@ -2,33 +2,46 @@
 <html lang="en">
 
 <head>
-    <title> Hockey Hangman by sal montecalvo</title>
+    <title>Hockey Hangman</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="container">
-        <h1>Hockey Hangman</h1>
+    <h1> Hockey Hangman</h1>
 
-        <div id="difficultySelection" class="box">
-            <h2>Select Difficulty</h2>
-            <button class="btn easy" onclick="startGame('easy')">Easy</button>
-            <button class="btn medium" onclick="startGame('medium')">Medium</button>
-            <button class="btn hard" onclick="startGame('hard')">Hard</button>
-        </div>
-
-        <div id="gameArea" class="box">
-            <h2 id="wordDisplay">_ _ _ _ _</h2>
-            <p>Guess a letter / try to find the word </p>
-            <input type="text" id="letterInput" maxlength="1">
-            <button class="btn guess-btn" onclick="guessLetter()">Guess</button>
-            <p class="wrong-letters">Wrong guesses: <span id="wrongLetters"></span></p>
-            <p id="message"></p>
-            <button class="btn restart" onclick="resetGame()">Restart</button>
-        </div>
+    <div id="scoreboard">
+        <p>Wins: <span id="wins">0</span> | Losses: <span id="losses">0</span></p>
     </div>
+
+    <div id="difficultySelection">
+        <h3>test you skill </h3>
+        <button class="btn category" onclick="startGame('teams')">Teams</button>
+        <button class="btn category" onclick="startGame('players')">Players</button>
+        <button class="btn category" onclick="startGame('terms')">Hockey Terms</button>
+        <button class="btn category" onclick="startGame('jagr')">Jágr Words</button>
+    </div>
+
+    <div id="gameArea">
+        <div id="iceBackground"></div> <!-- Ice-like background -->
+        <h2 id="wordDisplay"></h2>
+
+        <input type="text" id="letterInput" maxlength="1">
+        <button class="btn guess-btn" onclick="guessLetter()">Guess</button>
+
+        <p class="wrong-letters">Wrong guesses: <span id="wrongLetters"></span></p>
+        <p id="message"></p>
+        <button class="btn restart" onclick="resetGame()">Restart</button>
+    </div>
+
+    <div id="stats">
+        <p>Games Played: <span id="gamesPlayed">0</span></p>
+        <p>Guessed Letters: <span id="totalGuessed">0</span></p>
+        <p>Correct Letters: <span id="totalCorrect">0</span></p>
+        <p>Total Tries: <span id="totalTries">0</span></p>
+    </div>
+
 
     <script src="script.js"></script>
 </body>
