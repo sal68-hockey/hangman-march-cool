@@ -2,21 +2,21 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hockey Hangman</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1> Hockey Hangman</h1>
+    <h1>🏒 Hockey Hangman 🏒</h1>
 
     <div id="scoreboard">
         <p>Wins: <span id="wins">0</span> | Losses: <span id="losses">0</span></p>
     </div>
 
     <div id="difficultySelection">
-        <h3>test you skill </h3>
+        <h3>Select Category</h3>
         <button class="btn category" onclick="startGame('teams')">Teams</button>
         <button class="btn category" onclick="startGame('players')">Players</button>
         <button class="btn category" onclick="startGame('terms')">Hockey Terms</button>
@@ -24,7 +24,7 @@
     </div>
 
     <div id="gameArea">
-        <div id="iceBackground"></div> <!-- Ice-like background -->
+        <div id="iceBackground"></div>
         <h2 id="wordDisplay"></h2>
 
         <input type="text" id="letterInput" maxlength="1">
@@ -41,7 +41,6 @@
         <p>Correct Letters: <span id="totalCorrect">0</span></p>
         <p>Total Tries: <span id="totalTries">0</span></p>
     </div>
-
 
     <script src="script.js"></script>
 </body>
