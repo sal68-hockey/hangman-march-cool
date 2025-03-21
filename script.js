@@ -1,29 +1,28 @@
 const words = {
-    teams: ["rangers", "bruins", "canadiens", "flyers", "blackhawks"],
-    players: ["gretzky", "lemieux", "ovechkin", "mcdavid", "crosby"],
-    terms: ["powerplay", "faceoff", "hat-trick", "penalty", "slapshot"],
-    jagr: ["jagr", "penguins", "khl", "czech", "mullets"]
+    teams: { words: ["rangers", "bruins", "canadiens"], hints: ["New York team", "Boston team", "Montreal team"] },
+    players: { words: ["gretzky", "lemieux", "ovechkin"], hints: ["99", "Mario", "Ovi"] },
+    terms: { words: ["powerplay", "faceoff", "slapshot"], hints: ["Advantage", "Puck drop", "Hard shot"] },
+    jagr: { words: ["jagr", "penguins", "czech"], hints: ["Legend", "Played for Pittsburgh", "Nationality"] }
 };
 
 let chosenWord = "";
+let hint = "";
 let guessedLetters = [];
 let wrongLetters = [];
 let maxAttempts = 6;
-let wins = 0;
-let losses = 0;
-
-// Tally system
 let gamesPlayed = 0;
 let totalGuessed = 0;
 let totalCorrect = 0;
 let totalTries = 0;
 
 function startGame(category) {
-    chosenWord = words[category][Math.floor(Math.random() * words[category].length)];
+    let randomIndex = Math.floor(Math.random() * words[category].words.length);
+    chosenWord = words[category].words[randomIndex];
+    hint = words[category].hints[randomIndex];
+    
     guessedLetters = Array(chosenWord.length).fill("_");
     wrongLetters = [];
     gamesPlayed++;
-    updateStats();
 
     document.getElementById("difficultySelection").style.display = "none";
     document.getElementById("gameArea").style.display = "block";
@@ -31,6 +30,7 @@ function startGame(category) {
     updateWordDisplay();
     document.getElementById("wrongLetters").textContent = "";
     document.getElementById("message").textContent = "";
+    document.getElementById("hintDisplay").textContent = "";
 }
 
 function updateWordDisplay() {
@@ -45,6 +45,8 @@ function guessLetter() {
         alert("Please enter a valid letter.");
         return;
     }
+
+    totalGuessed++;
 
     if (chosenWord.includes(input)) {
         for (let i = 0; i < chosenWord.length; i++) {
@@ -61,6 +63,53 @@ function guessLetter() {
     updateStats();
     document.getElementById("wrongLetters").textContent = wrongLetters.join(", ");
     updateWordDisplay();
+
+    checkWinOrLose();
+}
+
+function submitAnswer() {
+    const answer = document.getElementById("fullAnswerInput").value.toLowerCase();
+    document.getElementById("fullAnswerInput").value = "";
+
+    if (answer === chosenWord) {
+        guessedLetters = chosenWord.split("");
+        updateWordDisplay();
+        displayWinScreen();
+    } else {
+        alert("Incorrect answer! Keep trying.");
+        totalTries++;
+        updateStats();
+    }
+}
+
+function getHint() {
+    document.getElementById("hintDisplay").textContent = "Hint: " + hint;
+}
+
+function checkWinOrLose() {
+    if (!guessedLetters.includes("_")) {
+        displayWinScreen();
+    } else if (wrongLetters.length >= maxAttempts) {
+        displayLoseScreen();
+    }
+}
+
+function displayWinScreen() {
+    document.getElementById("winScreen").style.display = "block";
+}
+
+function displayLoseScreen() {
+    document.getElementById("loseScreen").style.display = "block";
+    document.getElementById("correctWord").textContent = chosenWord;
+}
+
+function resetGame() {
+    document.getElementById("winScreen").style.display = "none";
+    document.getElementById("loseScreen").style.display = "none";
+    document.getElementById("gameArea").style.display = "none";
+    document.getElementById("difficultySelection").style.display = "block";
+
+    updateStats();
 }
 
 function updateStats() {
@@ -70,7 +119,3 @@ function updateStats() {
     document.getElementById("totalTries").textContent = totalTries;
 }
 
-function resetGame() {
-    document.getElementById("gameArea").style.display = "none";
-    document.getElementById("difficultySelection").style.display = "block";
-}

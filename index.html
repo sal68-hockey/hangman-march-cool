@@ -9,37 +9,63 @@
 </head>
 
 <body>
-    <h1>🏒 Hockey Hangman 🏒</h1>
 
-    <div id="scoreboard">
-        <p>Wins: <span id="wins">0</span> | Losses: <span id="losses">0</span></p>
-    </div>
+    <div id="gameWrapper">
+        <header>
+            <h1>🏒 Hockey Hangman 🏒</h1>
+        </header>
 
-    <div id="difficultySelection">
-        <h3>Select Category</h3>
-        <button class="btn category" onclick="startGame('teams')">Teams</button>
-        <button class="btn category" onclick="startGame('players')">Players</button>
-        <button class="btn category" onclick="startGame('terms')">Hockey Terms</button>
-        <button class="btn category" onclick="startGame('jagr')">Jágr Words</button>
-    </div>
+        <!-- Difficulty Selection -->
+        <div id="difficultySelection" class="center-container">
+            <h3>Select Category</h3>
+            <button class="btn category" onclick="startGame('teams')">Teams</button>
+            <button class="btn category" onclick="startGame('players')">Players</button>
+            <button class="btn category" onclick="startGame('terms')">Hockey Terms</button>
+            <button class="btn category" onclick="startGame('jagr')">Jágr Words</button>
+        </div>
 
-    <div id="gameArea">
-        <div id="iceBackground"></div>
-        <h2 id="wordDisplay"></h2>
+        <!-- Game Area -->
+        <div id="gameArea" class="center-container">
+            <div id="iceBackground"></div>
+            <h2 id="wordDisplay"></h2>
 
-        <input type="text" id="letterInput" maxlength="1">
-        <button class="btn guess-btn" onclick="guessLetter()">Guess</button>
+            <input type="text" id="letterInput" maxlength="1" class="input-field">
+            <button class="btn guess-btn" onclick="guessLetter()">Guess Letter</button>
 
-        <p class="wrong-letters">Wrong guesses: <span id="wrongLetters"></span></p>
-        <p id="message"></p>
-        <button class="btn restart" onclick="resetGame()">Restart</button>
-    </div>
+            <p class="wrong-letters">Wrong guesses: <span id="wrongLetters"></span></p>
 
-    <div id="stats">
-        <p>Games Played: <span id="gamesPlayed">0</span></p>
-        <p>Guessed Letters: <span id="totalGuessed">0</span></p>
-        <p>Correct Letters: <span id="totalCorrect">0</span></p>
-        <p>Total Tries: <span id="totalTries">0</span></p>
+            <!-- Answer Submission -->
+            <input type="text" id="fullAnswerInput" placeholder="Guess the full word" class="input-field">
+            <button class="btn answer-btn" onclick="submitAnswer()">Submit Answer</button>
+
+            <!-- Hint System -->
+            <button class="btn hint-btn" onclick="getHint()">Hint</button>
+            <p id="hintDisplay"></p>
+
+            <p id="message"></p>
+            <button class="btn restart" onclick="resetGame()">Restart</button>
+        </div>
+
+        <!-- Winning Screen -->
+        <div id="winScreen" class="center-container">
+            <h2>🎉 YOU WIN! 🎉</h2>
+            <button class="btn restart" onclick="resetGame()">Play Again</button>
+        </div>
+
+        <!-- Losing Screen -->
+        <div id="loseScreen" class="center-container">
+            <h2>❌ GAME OVER ❌</h2>
+            <p>The word was: <span id="correctWord"></span></p>
+            <button class="btn restart" onclick="resetGame()">Try Again</button>
+        </div>
+
+        <!-- Stats on sides -->
+        <div id="stats" class="side-stats">
+            <p>Games Played: <span id="gamesPlayed">0</span></p>
+            <p>Guessed Letters: <span id="totalGuessed">0</span></p>
+            <p>Correct Letters: <span id="totalCorrect">0</span></p>
+            <p>Total Tries: <span id="totalTries">0</span></p>
+        </div>
     </div>
 
     <script src="script.js"></script>
