@@ -4,67 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hockey Hangman</title>
+    <title>hockey hangman by salvatore</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
     <div id="gameWrapper">
         <header>
-            <h1> Jamiors Hangman </h1>
+            <h1> Jágr Edition </h1>
         </header>
 
         <!-- Difficulty Selection -->
-        <div id="difficultySelection" class="center-container">
-            <h3>Select Skill</h3>
-            <button class="btn category" onclick="startGame('teams')">Teams</button>
-            <button class="btn category" onclick="startGame('players')">Players</button>
-            <button class="btn category" onclick="startGame('terms')">Hockey Terms</button>
-            <button class="btn category" onclick="startGame('jagr')">Jágr Words</button>
+        <div id="difficultySelection">
+            <h3>Select Difficulty</h3>
+            <button class="btn easy-btn" onclick="setDifficulty('easy')">Easy</button>
+            <button class="btn hard-btn" onclick="setDifficulty('hard')">Hard</button>
+        </div>
+
+        <!-- Tally System on Sides -->
+        <div id="leftStats" class="side-stats">
+            <h3>Stats</h3>
+            <p>Games won <span id="gamesPlayed">0</span></p>
+            <p>Guessed Letters <span id="totalGuessed">0</span></p>
+            <p>Correct Letters <span id="totalCorrect">0</span></p>
+            <p>Tries <span id="totalTries">0</span></p>
+            <p>Wrong Letters <span id="wrongLetters"></span></p>
         </div>
 
         <!-- Game Area -->
-        <div id="gameArea" class="center-container">
-            <div id="iceBackground"></div>
-            <h2 id="wordDisplay"></h2>
+        <div class="center-container">
+            <div id="wordDisplay">_ _ _ _ _</div>
 
             <input type="text" id="letterInput" maxlength="1" class="input-field">
-            <button class="btn guess-btn" onclick="guessLetter()">Guess Letter</button>
-
-            <p class="wrong-letters">Wrong guesses: <span id="wrongLetters"></span></p>
-
-            <!-- Answer Submission -->
-            <input type="text" id="fullAnswerInput" placeholder="Guess the full word" class="input-field">
-            <button class="btn answer-btn" onclick="submitAnswer()">TAKE YOUR SHOT AND MAKE YOUR GUESS </button>
-
-            <!-- Hint System -->
-            <button class="btn hint-btn" onclick="getHint()">Hint</button>
-            <p id="hintDisplay"></p>
-
-            <p id="message"></p>
-            <button class="btn restart" onclick="resetGame()">Restart</button>
+            <button class="btn guess-btn" onclick="guessLetter()">Guess</button>
+            <button class="btn hint-btn" onclick="showHint()">Hint</button>
+            <button class="btn answer-btn" onclick="submitAnswer()">Submit Answer and take your shot</button>
         </div>
 
-        <!-- Winning Screen -->
-        <div id="winScreen" class="center-container">
-            <h2> BAR DIZZZ / YOU WIN! </h2>
+        <p id="message"></p>
+
+        <!-- Win & Lose Screens -->
+        <div id="winScreen" class="hidden">
+            <h2> You Win / bar dizzzzz </h2>
             <button class="btn restart" onclick="resetGame()">Play Again</button>
         </div>
 
-        <!-- Losing Screen -->
-        <div id="loseScreen" class="center-container">
-            <h2> GAME OVER/YOU LOST </h2>
+        <div id="loseScreen" class="hidden">
+            <h2>You Lost / 10 in the box </h2>
             <p>The word was: <span id="correctWord"></span></p>
             <button class="btn restart" onclick="resetGame()">Try Again</button>
-        </div>
-
-        <!-- Stats on sides -->
-        <div id="stats" class="side-stats">
-            <p>Games Played: <span id="gamesPlayed">0</span></p>
-            <p>Guessed Letters: <span id="totalGuessed">0</span></p>
-            <p>Correct Letters: <span id="totalCorrect">0</span></p>
-            <p>Total Tries: <span id="totalTries">0</span></p>
         </div>
     </div>
 
