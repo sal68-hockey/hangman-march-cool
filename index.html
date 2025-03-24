@@ -12,12 +12,12 @@
 
     <div id="gameWrapper">
         <header>
-            <h1>🏒 Hockey Hangman 🏒</h1>
+            <h1> Jamiors Hangman </h1>
         </header>
 
         <!-- Difficulty Selection -->
         <div id="difficultySelection" class="center-container">
-            <h3>Select Category</h3>
+            <h3>Select Skill</h3>
             <button class="btn category" onclick="startGame('teams')">Teams</button>
             <button class="btn category" onclick="startGame('players')">Players</button>
             <button class="btn category" onclick="startGame('terms')">Hockey Terms</button>
@@ -36,7 +36,7 @@
 
             <!-- Answer Submission -->
             <input type="text" id="fullAnswerInput" placeholder="Guess the full word" class="input-field">
-            <button class="btn answer-btn" onclick="submitAnswer()">Submit Answer</button>
+            <button class="btn answer-btn" onclick="submitAnswer()">TAKE YOUR SHOT AND MAKE YOUR GUESS </button>
 
             <!-- Hint System -->
             <button class="btn hint-btn" onclick="getHint()">Hint</button>
@@ -48,13 +48,13 @@
 
         <!-- Winning Screen -->
         <div id="winScreen" class="center-container">
-            <h2>🎉 YOU WIN! 🎉</h2>
+            <h2> BAR DIZZZ / YOU WIN! </h2>
             <button class="btn restart" onclick="resetGame()">Play Again</button>
         </div>
 
         <!-- Losing Screen -->
         <div id="loseScreen" class="center-container">
-            <h2>❌ GAME OVER ❌</h2>
+            <h2> GAME OVER/YOU LOST </h2>
             <p>The word was: <span id="correctWord"></span></p>
             <button class="btn restart" onclick="resetGame()">Try Again</button>
         </div>

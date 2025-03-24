@@ -1,7 +1,7 @@
 /* Body */
 body {
     font-family: 'Press Start 2P', cursive;
-    background: #1C1C1C; /* Dark background for 1980s game feel */
+    background: #0C1B28; /* Dark background to match ice rink theme */
     color: white;
     margin: 0;
     padding: 0;
@@ -21,7 +21,7 @@ body {
     width: 80%;
     max-width: 900px;
     min-height: 80%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
@@ -29,10 +29,11 @@ body {
 
 /* Header */
 header h1 {
-    font-size: 2.5rem;
-    color: gold;
+    font-size: 3rem;
+    color: #F9D342; /* Vibrant gold */
     margin-bottom: 20px;
     text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 /* Buttons */
@@ -45,27 +46,32 @@ header h1 {
     font-size: 18px;
     transition: all 0.3s ease;
     letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
+/* Category Buttons */
 .category {
-    background-color: #FFD700;
-    color: #1E3A8A;
+    background-color: #1E3A8A; /* Deep blue */
+    color: #F9D342; /* Gold */
+    border: 2px solid #F9D342; /* Gold border for contrast */
 }
 
+/* Main Game Action Buttons */
 .guess-btn, .answer-btn, .hint-btn, .restart {
-    background-color: #1E3A8A;
-    color: gold;
-    border: 2px solid #FF6347;
+    background-color: #1E3A8A; /* Deep blue */
+    color: #F9D342; /* Gold */
+    border: 2px solid #F9D342; /* Gold border for contrast */
 }
 
 .restart {
-    background-color: #FF6347;
+    background-color: #E53E3E; /* Red for urgency */
     color: white;
-    border: 2px solid #FF6347;
+    border: 2px solid #E53E3E;
 }
 
+/* Buttons on hover */
 .btn:hover {
-    background-color: #3B82F6;
+    background-color: #3B82F6; /* Lighter blue on hover */
     color: white;
     transform: scale(1.05);
 }
@@ -98,6 +104,7 @@ header h1 {
     letter-spacing: 2px;
     margin: 20px 0;
     text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 /* Hint and Message */
@@ -122,7 +129,7 @@ header h1 {
     right: 10%;
     font-size: 18px;
     color: white;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     padding: 20px;
     border-radius: 10px;
     width: 200px;
@@ -153,6 +160,7 @@ header h1 {
 
 #loseScreen p {
     margin-top: 10px;
+    font-size: 22px;
 }
 
 /* Smooth Transitions */
