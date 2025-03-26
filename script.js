@@ -1,99 +1,67 @@
-let easyWords = ["jagr", "goalhorn ", "salute", "pass","the hair " ,"pitt"];
-let hardWords = ["stanleycup", "czechrepublic", "rightwinger", "hockeylegend", "mullet","kladno"];
-let chosenWord = "";
-let displayWord = "";
+let words = {
+    easy: [
+        { word: "puck", hint: "Small rubber disc used in hockey" },
+        { word: "goal", hint: "You need this to score points" },
+        { word: "cezch", hint: "where the great 68 is from " },
+        { word: "assit", hint: "get some apples" }
+    ],
+    hard: [
+        { word: "slapshot", hint: "A powerful hockey shot" },
+        { word: "bardown", hint: " I always go _______" },
+        { word: "breakaway", hint: "A player gets ahead with no defenders" },
+        { word: "mullet", hint: "best hair in the world / sal and drew" }
+    ]
+};
+
+let selectedWordObj = {};
 let guessedLetters = [];
-let wrongLetters = [];
-let maxAttempts = 6;
-let totalGuessed = 0;
-let totalCorrect = 0;
-let totalTries = 0;
+let tries = 0;
 let gamesPlayed = 0;
+let correctLetters = 0;
+let wrongLetters = 0;
 
-function setDifficulty(level) {
-    chosenWord = (level === "easy") 
-        ? easyWords[Math.floor(Math.random() * easyWords.length)].toUpperCase() 
-        : hardWords[Math.floor(Math.random() * hardWords.length)].toUpperCase();
-
-    displayWord = "_ ".repeat(chosenWord.length);
+function startGame(difficulty) {
+    selectedWordObj = words[difficulty][Math.floor(Math.random() * words[difficulty].length)];
     guessedLetters = [];
-    wrongLetters = [];
-    updateDisplay();
-}
-
-function updateDisplay() {
-    document.getElementById("wordDisplay").textContent = displayWord;
-    document.getElementById("message").textContent = "Guess a letter!";
-    document.getElementById("wrongLetters").textContent = wrongLetters.join(", ");
+    tries = 0;
+    document.getElementById("wordDisplay").innerText = "_ ".repeat(selectedWordObj.word.length).trim();
+    document.getElementById("gameArea").classList.remove("hidden");
+    document.getElementById("hintText").innerText = "Click 'Hint' if you need help!";
+    updateStats();
 }
 
 function guessLetter() {
-    let input = document.getElementById("letterInput").value.toUpperCase();
-    document.getElementById("letterInput").value = "";
+    let letterInput = document.getElementById("letterInput");
+    let letter = letterInput.value.toUpperCase();
+    
+    if (letter && !guessedLetters.includes(letter) && letter.match(/[A-Z]/)) {
+        guessedLetters.push(letter);
+        tries++;
 
-    if (!input.match(/[A-Z]/) || guessedLetters.includes(input)) {
-        document.getElementById("message").textContent = "Invalid input!";
-        return;
-    }
-
-    guessedLetters.push(input);
-    totalGuessed++;
-
-    if (chosenWord.includes(input)) {
-        totalCorrect++;
-        let newDisplay = "";
-        for (let i = 0; i < chosenWord.length; i++) {
-            newDisplay += chosenWord[i] === input ? input + " " : displayWord[i * 2] + " ";
+        if (selectedWordObj.word.toUpperCase().includes(letter)) {
+            correctLetters++;
+        } else {
+            wrongLetters++;
         }
-        displayWord = newDisplay;
-    } else {
-        wrongLetters.push(input);
-    }
 
-    totalTries++;
-    checkWin();
-    updateDisplay();
-    updateStats();
-}
-
-function submitAnswer() {
-    let answer = prompt("Enter your answer:").toUpperCase();
-    if (answer === chosenWord) {
-        displayWinScreen();
-    } else {
-        displayLoseScreen();
+        updateDisplay();
+        updateStats();
+        letterInput.value = "";
     }
 }
 
-function showHint() {
-    alert("Hint: It's related to Jaromír Jágr best of luck ");
+function getHint() {
+    document.getElementById("hintText").innerText = "Hint: " + selectedWordObj.hint;
 }
 
-function checkWin() {
-    if (!displayWord.includes("_")) {
-        displayWinScreen();
-    } else if (wrongLetters.length >= maxAttempts) {
-        displayLoseScreen();
-    }
-}
-
-function displayWinScreen() {
-    document.getElementById("winScreen").style.display = "block";
-}
-
-function displayLoseScreen() {
-    document.getElementById("loseScreen").style.display = "block";
-    document.getElementById("correctWord").textContent = chosenWord;
-}
-
-function resetGame() {
-    gamesPlayed++;
-    document.getElementById("winScreen").style.display = "none";
-    document.getElementById("loseScreen").style.display = "none";
-    updateStats();
+function updateDisplay() {
+    let displayWord = selectedWordObj.word.toUpperCase().split("").map(letter => guessedLetters.includes(letter) ? letter : "_").join(" ");
+    document.getElementById("wordDisplay").innerText = displayWord;
 }
 
 function updateStats() {
-    document.getElementById("gamesPlayed").textContent = gamesPlayed;
+    document.getElementById("gamesPlayed").innerText = gamesPlayed;
+    document.getElementById("lettersGuessed").innerText = guessedLetters.length;
+    document.getElementById("correctLetters").innerText = correctLetters;
+    document.getElementById("wrongLetters").innerText = wrongLetters;
 }
-

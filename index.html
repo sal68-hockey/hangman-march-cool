@@ -4,57 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hockey hangman by salvatore</title>
+    <title>Hockey Hangman - Jaromír Jágr Edition</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <header>
+        <h1> Jagers Hangman </h1>
+    </header>
+
     <div id="gameWrapper">
-        <header>
-            <h1> Jágr Edition </h1>
-        </header>
 
-        <!-- Difficulty Selection -->
-        <div id="difficultySelection">
-            <h3>Select Difficulty</h3>
-            <button class="btn easy-btn" onclick="setDifficulty('easy')">Easy</button>
-            <button class="btn hard-btn" onclick="setDifficulty('hard')">Hard</button>
-        </div>
-
-        <!-- Tally System on Sides -->
         <div id="leftStats" class="side-stats">
-            <h3>Stats</h3>
-            <p>Games won <span id="gamesPlayed">0</span></p>
-            <p>Guessed Letters <span id="totalGuessed">0</span></p>
-            <p>Correct Letters <span id="totalCorrect">0</span></p>
-            <p>Tries <span id="totalTries">0</span></p>
-            <p>Wrong Letters <span id="wrongLetters"></span></p>
+            <h2>Game Stats</h2>
+            <p>Games Played: <span id="gamesPlayed">0</span></p>
+
+            <p>Correct Letters: <span id="correctLetters">0</span></p>
+            <p>Wrong Letters: <span id="wrongLetters">0</span></p>
         </div>
 
-        <!-- Game Area -->
+
         <div class="center-container">
-            <div id="wordDisplay">_ _ _ _ _</div>
 
-            <input type="text" id="letterInput" maxlength="1" class="input-field">
-            <button class="btn guess-btn" onclick="guessLetter()">Guess</button>
-            <button class="btn hint-btn" onclick="showHint()">Hint</button>
-            <button class="btn answer-btn" onclick="submitAnswer()">Submit Answer and take your shot</button>
+            <div id="difficultySelection">
+                <h2>Select Difficulty</h2>
+                <button class="btn easy-btn" onclick="startGame('easy')">Easy</button>
+                <button class="btn hard-btn" onclick="startGame('hard')">Hard</button>
+            </div>
+
+
+            <div id="gameArea" class="hidden">
+                <h2 id="wordDisplay">_ _ _ _ _ _ _ _</h2>
+
+
+                <input type="text" id="letterInput" maxlength="1" class="input-field">
+                <button class="btn guess-btn" onclick="guessLetter()">Guess Letter</button>
+                <button class="btn hint-btn" onclick="getHint()">Hint</button>
+                <button class="btn answer-btn" onclick="submitAnswer()">Submit Answer</button>
+
+                <p id="hintText"> ask for a hint </p>
+                <p id="message"></p>
+            </div>
         </div>
 
-        <p id="message"></p>
 
-        <!-- Win & Lose Screens -->
-        <div id="winScreen" class="hidden">
-            <h2> You Win / bar dizzzzz </h2>
+        <div id="winner" class="hidden">
+            <h2> You Win/bar dizz </h2>
             <button class="btn restart" onclick="resetGame()">Play Again</button>
         </div>
 
-        <div id="loseScreen" class="hidden">
-            <h2>You Lost / 10 in the box </h2>
-            <p>The word was: <span id="correctWord"></span></p>
+        <div id="loser" class="hidden">
+            <h2> You Lost </h2>
             <button class="btn restart" onclick="resetGame()">Try Again</button>
         </div>
     </div>
+
+
 
     <script src="script.js"></script>
 </body>
