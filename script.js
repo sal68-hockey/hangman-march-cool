@@ -1,67 +1,77 @@
 let words = {
     easy: [
-        { word: "puck", hint: "Small rubber disc used in hockey" },
-        { word: "goal", hint: "You need this to score points" },
-        { word: "cezch", hint: "where the great 68 is from " },
-        { word: "assit", hint: "get some apples" }
+        { word: "pittsburgh", hint: "Jágr's first NHL team." },
+        { word: "hat trick", hint: "3 at a time." },
+        { word: "goal", hint: "Jágr scored over 766 of these in the NHL." }
     ],
     hard: [
-        { word: "slapshot", hint: "A powerful hockey shot" },
-        { word: "bardown", hint: " I always go _______" },
-        { word: "breakaway", hint: "A player gets ahead with no defenders" },
-        { word: "mullet", hint: "best hair in the world / sal and drew" }
+        { word: "stanleycup", hint: "Jágr won this twice with the Penguins." },
+        { word: "mullet", hint: "The best haircut out there." },
+        { word: "czechoslovakia", hint: "Jágr's birthplace before it split into two nations." }
     ]
 };
 
-let selectedWordObj = {};
+let currentWord = "";
 let guessedLetters = [];
-let tries = 0;
-let gamesPlayed = 0;
 let correctLetters = 0;
 let wrongLetters = 0;
+let gamesPlayed = 0;
+let currentDifficulty = "";
 
 function startGame(difficulty) {
-    selectedWordObj = words[difficulty][Math.floor(Math.random() * words[difficulty].length)];
+    currentDifficulty = difficulty;
+    let wordObj = words[difficulty][Math.floor(Math.random() * words[difficulty].length)];
+    currentWord = wordObj.word;
     guessedLetters = [];
-    tries = 0;
-    document.getElementById("wordDisplay").innerText = "_ ".repeat(selectedWordObj.word.length).trim();
+    correctLetters = 0;
+    wrongLetters = 0;
+    gamesPlayed++;
+
+    document.getElementById("wordDisplay").innerText = "_ ".repeat(currentWord.length).trim();
+    document.getElementById("hintText").innerText = "Ask for a hint";
+    document.getElementById("gamesPlayed").innerText = gamesPlayed;
     document.getElementById("gameArea").classList.remove("hidden");
-    document.getElementById("hintText").innerText = "Click 'Hint' if you need help!";
-    updateStats();
+    document.getElementById("difficultySelection").classList.add("hidden");
+    document.getElementById("message").innerText = "";
 }
 
 function guessLetter() {
-    let letterInput = document.getElementById("letterInput");
-    let letter = letterInput.value.toUpperCase();
+    let input = document.getElementById("letterInput").value.toLowerCase().trim();
+    if (!input || guessedLetters.includes(input) || input.length !== 1) return;
+
+    guessedLetters.push(input);
     
-    if (letter && !guessedLetters.includes(letter) && letter.match(/[A-Z]/)) {
-        guessedLetters.push(letter);
-        tries++;
+    if (currentWord.includes(input)) {
+        correctLetters++;
+    } else {
+        wrongLetters++;
+    }
 
-        if (selectedWordObj.word.toUpperCase().includes(letter)) {
-            correctLetters++;
-        } else {
-            wrongLetters++;
-        }
+    updateStats();
+    updateDisplay();
+}
 
-        updateDisplay();
-        updateStats();
-        letterInput.value = "";
+function updateStats() {
+    document.getElementById("correctLetters").innerText = correctLetters;
+    document.getElementById("wrongLetters").innerText = wrongLetters;
+    document.getElementById("guessedLetters").innerText = guessedLetters.join(", ");
+}
+
+function updateDisplay() {
+    let displayWord = currentWord.split("").map(letter => guessedLetters.includes(letter) ? letter : "_").join(" ");
+    document.getElementById("wordDisplay").innerText = displayWord;
+
+    if (!displayWord.includes("_")) {
+        document.getElementById("winner").classList.remove("hidden");
+        document.getElementById("gameArea").classList.add("hidden");
     }
 }
 
 function getHint() {
-    document.getElementById("hintText").innerText = "Hint: " + selectedWordObj.hint;
+    let wordObj = words[currentDifficulty].find(w => w.word === currentWord);
+    document.getElementById("hintText").innerText = wordObj ? wordObj.hint : "No hint available.";
 }
 
-function updateDisplay() {
-    let displayWord = selectedWordObj.word.toUpperCase().split("").map(letter => guessedLetters.includes(letter) ? letter : "_").join(" ");
-    document.getElementById("wordDisplay").innerText = displayWord;
-}
-
-function updateStats() {
-    document.getElementById("gamesPlayed").innerText = gamesPlayed;
-    document.getElementById("lettersGuessed").innerText = guessedLetters.length;
-    document.getElementById("correctLetters").innerText = correctLetters;
-    document.getElementById("wrongLetters").innerText = wrongLetters;
+function resetGame() {
+    location.reload();
 }

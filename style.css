@@ -1,8 +1,8 @@
-/* Global Styles */
+/* General Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #0A1931; /* Solid navy blue background */
-    color: #FFD700;
+    background-color: #0A1931; /* Navy blue */
+    color: #FFD700; /* Gold */
     text-align: center;
     margin: 0;
     padding: 0;

@@ -10,56 +10,47 @@
 
 <body>
     <header>
-        <h1> Jagers Hangman </h1>
+        <h1>Jágr's Hangman</h1>
     </header>
 
     <div id="gameWrapper">
-
         <div id="leftStats" class="side-stats">
             <h2>Game Stats</h2>
             <p>Games Played: <span id="gamesPlayed">0</span></p>
-
             <p>Correct Letters: <span id="correctLetters">0</span></p>
             <p>Wrong Letters: <span id="wrongLetters">0</span></p>
+            <p>Guessed Letters: <span id="guessedLetters"></span></p>
         </div>
 
-
         <div class="center-container">
-
             <div id="difficultySelection">
                 <h2>Select Difficulty</h2>
                 <button class="btn easy-btn" onclick="startGame('easy')">Easy</button>
                 <button class="btn hard-btn" onclick="startGame('hard')">Hard</button>
             </div>
 
-
             <div id="gameArea" class="hidden">
-                <h2 id="wordDisplay">_ _ _ _ _ _ _ _</h2>
-
-
+                <h2 id="wordDisplay">_ _ _ _ _</h2>
                 <input type="text" id="letterInput" maxlength="1" class="input-field">
                 <button class="btn guess-btn" onclick="guessLetter()">Guess Letter</button>
                 <button class="btn hint-btn" onclick="getHint()">Hint</button>
                 <button class="btn answer-btn" onclick="submitAnswer()">Submit Answer</button>
 
-                <p id="hintText"> ask for a hint </p>
+                <p id="hintText">Ask for a hint</p>
                 <p id="message"></p>
             </div>
         </div>
 
-
         <div id="winner" class="hidden">
-            <h2> You Win/bar dizz </h2>
-            <button class="btn restart" onclick="resetGame()">Play Again</button>
+            <h2>You won / bar dizzzzz</h2>
+            <button class="btn restart" onclick="startGame(currentDifficulty)">Play Again</button>
         </div>
 
         <div id="loser" class="hidden">
-            <h2> You Lost </h2>
-            <button class="btn restart" onclick="resetGame()">Try Again</button>
+            <h2>You Lost / 5 in the box</h2>
+            <button class="btn restart" onclick="startGame(currentDifficulty)">Try Again</button>
         </div>
     </div>
-
-
 
     <script src="script.js"></script>
 </body>
