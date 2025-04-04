@@ -1,8 +1,16 @@
 let words = {
     easy: [
         { word: "pittsburgh", hint: "Jágr's first NHL team." },
-        { word: "hat trick", hint: "3 at a time." },
+        { word: "hattrick", hint: "3 at a time." },
         { word: "goal", hint: "Jágr scored over 766 of these in the NHL." }
+    ],
+    med: [
+        { word: "ovi", hint: "the great 8" },
+        { word: "skates", hint: " on your feet" },
+        { word: "bender", hint: " you suckkkkk" },
+        { word: "beauty", hint: " A player that is talented, both on and off the ice, and loved by his teammates." },
+        
+       
     ],
     hard: [
         { word: "stanleycup", hint: "Jágr won this twice with the Penguins." },
@@ -49,7 +57,11 @@ function guessLetter() {
 
     updateStats();
     updateDisplay();
+
+    // Clear the input field after a letter is entered
+    document.getElementById("letterInput").value = "";
 }
+
 
 function updateStats() {
     document.getElementById("correctLetters").innerText = correctLetters;

@@ -24,8 +24,9 @@
 
         <div class="center-container">
             <div id="difficultySelection">
-                <h2>Select Difficulty</h2>
+                <h1>Select skill</h1>
                 <button class="btn easy-btn" onclick="startGame('easy')">Easy</button>
+                <button class="btn med" onclick="startGame('med')">Med</button>
                 <button class="btn hard-btn" onclick="startGame('hard')">Hard</button>
             </div>
 
@@ -34,9 +35,8 @@
                 <input type="text" id="letterInput" maxlength="1" class="input-field">
                 <button class="btn guess-btn" onclick="guessLetter()">Guess Letter</button>
                 <button class="btn hint-btn" onclick="getHint()">Hint</button>
-                <button class="btn answer-btn" onclick="submitAnswer()">Submit Answer</button>
 
-                <p id="hintText">Ask for a hint</p>
+                <p id="hintText">Ask for a hint </p>
                 <p id="message"></p>
             </div>
         </div>
@@ -48,7 +48,7 @@
 
         <div id="loser" class="hidden">
             <h2>You Lost / 5 in the box</h2>
-            <button class="btn restart" onclick="startGame(currentDifficulty)">Try Again</button>
+            <button class="btn restart" onclick="startGame(currentDifficulty)">Try Again/its ok dont cry </button>
         </div>
     </div>
 
